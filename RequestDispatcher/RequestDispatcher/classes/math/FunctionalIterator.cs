@@ -1,11 +1,7 @@
-﻿#region Using directives
+﻿using System;
+using RequestDispatcher.RdMath.Interfaces;
 
-using System;
-using NumericalMethods.Interfaces;
-
-#endregion
-
-namespace NumericalMethods.Iterations
+namespace RequestDispatcher.RdMath.Iterations
 {
     /// Iterative process based on a one-variable function,
     /// having a single numerical _result.

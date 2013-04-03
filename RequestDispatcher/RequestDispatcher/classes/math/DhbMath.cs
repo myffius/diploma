@@ -1,10 +1,6 @@
-﻿#region Using directives
+﻿using System;
 
-using System;
-
-#endregion
-
-namespace NumericalMethods.DhbFunctionEvaluation
+namespace RequestDispatcher.RdMath.DhbFunctionEvaluation
 {
     /// This class implements additional mathematical functions
     /// and determines the parameters of the floating point representation.

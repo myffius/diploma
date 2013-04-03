@@ -1,8 +1,4 @@
-﻿#region Using directives
-
-#endregion
-
-namespace NumericalMethods.Interfaces
+﻿namespace RequestDispatcher.RdMath.Interfaces
 {
     /// IOneVariableFunction is an interface for mathematical functions of
     /// a single variable, that is functions of the form f(x).

@@ -1,12 +1,8 @@
-﻿#region Using directives
+﻿using System;
+using RequestDispatcher.RdMath.DhbFunctionEvaluation;
+using RequestDispatcher.RdMath.Interfaces;
 
-using System;
-using NumericalMethods.DhbFunctionEvaluation;
-using NumericalMethods.Interfaces;
-
-#endregion
-
-namespace NumericalMethods.Statistics
+namespace RequestDispatcher.RdMath
 {
     /// Normal distribution, a.k.a. Gaussian distribution.
     ///
@@ -21,7 +17,7 @@ namespace NumericalMethods.Statistics
         private double _sigma;
 
         /// Constant needed to compute the norm.
-        private static double _baseNorm = Math.Sqrt(2 * Math.PI);
+        private static double _baseNorm = RdMath.Sqrt(2 * RdMath.PI);
 
         /// Series to compute the error function.
         private static PolynomialFunction _errorFunctionSeries;
@@ -109,7 +105,7 @@ namespace NumericalMethods.Statistics
         /// @param x double	value for which the probability is evaluated.
         static public double Normal(double x)
         {
-            return Math.Exp(-0.5 * x * x) / _baseNorm;
+            return RdMath.Exp(-0.5 * x * x) / _baseNorm;
         }
 
         /// @return double[]	array containing mu and sigma

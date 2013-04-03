@@ -1,8 +1,4 @@
-﻿#region Using directives
-
-#endregion
-
-namespace NumericalMethods.Interfaces
+﻿namespace RequestDispatcher.RdMath.Interfaces
 {
     /// IParametrizedOneVariableFunction is an interface for mathematical
     /// functions of one variable depending on several parameters,
@@ -10,8 +6,7 @@ namespace NumericalMethods.Interfaces
     ///
     /// @author Didier H. Besset
     /// @translator edgar.sanchez@logicstudio.net
-    public interface IParametrizedOneVariableFunction
-                                            : IOneVariableFunction
+    public interface IParametrizedOneVariableFunction : IOneVariableFunction
     {
         /// array containing the parameters
         double[] Parameters { get; set; }

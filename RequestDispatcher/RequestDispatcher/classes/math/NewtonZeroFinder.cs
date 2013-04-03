@@ -1,12 +1,8 @@
-﻿#region Using directives
+﻿using System;
+using RequestDispatcher.RdMath.Interfaces;
+using RequestDispatcher.RdMath.DhbFunctionEvaluation;
 
-using System;
-using NumericalMethods.Interfaces;
-using NumericalMethods.DhbFunctionEvaluation;
-
-#endregion
-
-namespace NumericalMethods.Iterations
+namespace RequestDispatcher.RdMath.Iterations
 {
     /// Finds the zeroes of a function using Newton approximation.
     /// Note: the zero of a function if the value at which the function's

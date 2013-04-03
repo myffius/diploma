@@ -1,14 +1,10 @@
-﻿#region Using directives
-
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Text;
-using NumericalMethods.Interfaces;
-using NumericalMethods.Iterations;
+using RequestDispatcher.RdMath.Interfaces;
+using RequestDispatcher.RdMath.Iterations;
 
-#endregion
-
-namespace NumericalMethods.DhbFunctionEvaluation
+namespace RequestDispatcher.RdMath.DhbFunctionEvaluation
 {
     /// Mathematical polynomial:
     /// c[0] + c[1] * x + c[2] * x^2 + ....
