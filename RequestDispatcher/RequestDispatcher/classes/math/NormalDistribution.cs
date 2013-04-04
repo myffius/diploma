@@ -140,9 +140,7 @@ namespace RequestDispatcher.RdMath
         /// @return string
         public override string ToString()
         {
-            return string.Format( 
-                        "{0} ({1:0.00000},{2:0.00000})",
-                        this.Name, _mu, _sigma );
+            return string.Format("{0} ({1:0.00000},{2:0.00000})", this.Name, _mu, _sigma );
         }
 
         /// @return double probability density function
