@@ -1,0 +1,9 @@
+D:\diploma\diploma\RequestDispatcher\RequestDispatcher\obj\x86\Debug\ResolveAssemblyReference.cache
+D:\diploma\diploma\RequestDispatcher\RequestDispatcher\obj\x86\Debug\RequestDispatcher.MainForm.resources
+D:\diploma\diploma\RequestDispatcher\RequestDispatcher\obj\x86\Debug\RequestDispatcher.Properties.Resources.resources
+D:\diploma\diploma\RequestDispatcher\RequestDispatcher\obj\x86\Debug\GenerateResource.read.1.tlog
+D:\diploma\diploma\RequestDispatcher\RequestDispatcher\obj\x86\Debug\GenerateResource.write.1.tlog
+D:\diploma\diploma\RequestDispatcher\RequestDispatcher\bin\Debug\RequestDispatcher.exe
+D:\diploma\diploma\RequestDispatcher\RequestDispatcher\bin\Debug\RequestDispatcher.pdb
+D:\diploma\diploma\RequestDispatcher\RequestDispatcher\obj\x86\Debug\RequestDispatcher.exe
+D:\diploma\diploma\RequestDispatcher\RequestDispatcher\obj\x86\Debug\RequestDispatcher.pdb

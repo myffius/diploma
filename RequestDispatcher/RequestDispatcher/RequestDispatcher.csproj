@@ -46,6 +46,19 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="classes\math\DhbMath.cs" />
+    <Compile Include="classes\math\FunctionalIterator.cs" />
+    <Compile Include="classes\math\FunctionDerivative.cs" />
+    <Compile Include="classes\math\IHistogram.cs" />
+    <Compile Include="classes\math\interfaces\IOneVariableFunction.cs" />
+    <Compile Include="classes\math\interfaces\IParametrizedOneVariableFunction.cs" />
+    <Compile Include="classes\math\IterativeProcess.cs" />
+    <Compile Include="classes\math\NewtonZeroFinder.cs" />
+    <Compile Include="classes\math\NormalDistribution.cs" />
+    <Compile Include="classes\math\OffsetDistributionFunction.cs" />
+    <Compile Include="classes\math\PolynomialFunction.cs" />
+    <Compile Include="classes\math\ProbabilityDensityFunction.cs" />
+    <Compile Include="classes\math\RandomGenerator.cs" />
     <Compile Include="MainForm.cs">
       <SubType>Form</SubType>
     </Compile>

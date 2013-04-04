@@ -17,7 +17,7 @@ namespace RequestDispatcher.RdMath
         private double _sigma;
 
         /// Constant needed to compute the norm.
-        private static double _baseNorm = Math.Sqrt(2 * RdMath.PI);
+        private static double _baseNorm = Math.Sqrt(2 * Math.PI);
 
         /// Series to compute the error function.
         private static PolynomialFunction _errorFunctionSeries;

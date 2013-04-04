@@ -27,8 +27,7 @@ namespace RequestDispatcher.RdMath.Iterations
         /// @param func the function for which the zero will be found.
         /// @param dFunc derivative of func.
         /// @param start the initial value for the search.
-        public NewtonZeroFinder(IOneVariableFunction func,
-                                    IOneVariableFunction dFunc, double start) : this(func, start)
+        public NewtonZeroFinder(IOneVariableFunction func, IOneVariableFunction dFunc, double start) : this(func, start)
         {
             this.Derivative = dFunc;
         }
@@ -70,8 +69,7 @@ namespace RequestDispatcher.RdMath.Iterations
             {
                 _df = new FunctionDerivative(_f);
                 if (!DhbMath.Equal(_df.Value(_result), value.Value(_result), 0.001))
-                    throw new ArgumentException
-                                    ("Supplied derative function is inaccurate");
+                    throw new ArgumentException("Supplied derative function is inaccurate");
                 _df = value;
             }
         }
