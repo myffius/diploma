@@ -165,5 +165,10 @@ namespace RequestDispatcher.RdMath
             answer[2] = answer[0] * (y * y - 1) / _sigma;
             return answer;
         }
+
+        internal void DistributionValue()
+        {
+            throw new NotImplementedException();
+        }
     }
 }
