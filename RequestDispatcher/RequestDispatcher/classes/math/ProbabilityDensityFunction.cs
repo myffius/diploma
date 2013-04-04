@@ -1,14 +1,10 @@
-﻿#region Using directives
-
-using System;
+﻿using System;
 using System.Text;
-using NumericalMethods.Interfaces;
-using NumericalMethods.DhbFunctionEvaluation;
-using NumericalMethods.Iterations;
+using RequestDispatcher.RdMath.Interfaces;
+using RequestDispatcher.RdMath.DhbFunctionEvaluation;
+using RequestDispatcher.RdMath.Iterations;
 
-#endregion
-
-namespace NumericalMethods.Statistics
+namespace RequestDispatcher.RdMath
 {
     /// Subclasses of this class represent probability density function.
     /// The value of the funtion f (x) represents the probability that a

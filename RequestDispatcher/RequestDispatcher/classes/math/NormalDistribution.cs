@@ -17,7 +17,7 @@ namespace RequestDispatcher.RdMath
         private double _sigma;
 
         /// Constant needed to compute the norm.
-        private static double _baseNorm = RdMath.Sqrt(2 * RdMath.PI);
+        private static double _baseNorm = Math.Sqrt(2 * RdMath.PI);
 
         /// Series to compute the error function.
         private static PolynomialFunction _errorFunctionSeries;
@@ -47,8 +47,7 @@ namespace RequestDispatcher.RdMath
         public NormalDistribution(double average, double standardDeviation)
         {
             if (standardDeviation <= 0)
-                throw new ArgumentOutOfRangeException(
-                                    "Standard deviation must be positive");
+                throw new ArgumentOutOfRangeException("Standard deviation must be positive");
             _mu = average;
             _sigma = standardDeviation;
         }
@@ -105,7 +104,7 @@ namespace RequestDispatcher.RdMath
         /// @param x double	value for which the probability is evaluated.
         static public double Normal(double x)
         {
-            return RdMath.Exp(-0.5 * x * x) / _baseNorm;
+            return Math.Exp(-0.5 * x * x) / _baseNorm;
         }
 
         /// @return double[]	array containing mu and sigma
