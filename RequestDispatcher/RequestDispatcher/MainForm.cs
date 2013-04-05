@@ -19,9 +19,8 @@ namespace RequestDispatcher
             for (int i = 1; i < 6; i++)
             {
                 String identifier = "Обработчик " + Convert.ToString(i);
-                dataGridView1.Rows.Add(identifier, 2.7, 2048);
             }
-            createDataGrid();
+            // createDataGrid();
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -69,23 +68,60 @@ namespace RequestDispatcher
         {
             Graphics g = e.Graphics;
             Brush _textBrush;
+            TabControl tabControl = (TabControl)sender;
 
             // Get the item from the collection.
-            TabPage _tabPage = tabControl1.TabPages[e.Index];
+            TabPage _tabPage = tabControl.TabPages[e.Index];
+
+            _tabPage.BorderStyle = BorderStyle.None;
+
+
+            ///////////////////////////
+
+            SolidBrush fillBrush = new SolidBrush(Color.DarkGray);
+
+            //draw rectangle behind the tabs
+            Rectangle lastTabRect = tabControl.GetTabRect(tabControl.TabPages.Count - 1);
+            Rectangle background = new Rectangle();
+            //background.Location = new Point(lastTabRect.Left, lastTabRect.Bottom);
+            background.Location = new Point(tabControl.Left, lastTabRect.Bottom);
+
+            //pad the rectangle to cover the 1 pixel line between the top of the tabpage and the start of the tabs
+            // background.Size = new Size(tabControl1.Bottom - background.Left, lastTabRect.Height + 1);
+            background.Size = new Size(lastTabRect.Width, tabControl.Height);
+            e.Graphics.FillRectangle(fillBrush, background);
+
+
+            ///////////////////////////
+
+
+
+
+            Brush backBrush = new SolidBrush(Color.DarkGray);
+            g.FillRectangle(backBrush, e.Bounds);
+            backBrush.Dispose();
 
             // Get the real bounds for the tab rectangle.
-            Rectangle _tabBounds = tabControl1.GetTabRect(e.Index);
+            Rectangle _tabBounds = tabControl.GetTabRect(e.Index);
+
+            //MessageBox.Show(Convert.ToString(_tabBounds.Top));
+            int newLeft = _tabBounds.Left - 8;
+            int newTop = _tabBounds.Top;
+            _tabBounds.Location = new Point(-100, newTop);
+            _tabBounds.Size = new Size(120, 40);
 
             if (e.State == DrawItemState.Selected)
             {
                 // Draw a different background color, and don't paint a focus rectangle.
                 _textBrush = new SolidBrush(Color.White);
-                g.FillRectangle(Brushes.DimGray, e.Bounds);
+                //g.FillRectangle(Brushes.WhiteSmoke, _tabBounds);
+                g.FillRectangle(Brushes.Green, _tabBounds);
             }
             else
             {
                 _textBrush = new System.Drawing.SolidBrush(e.ForeColor);
-                e.DrawBackground();
+                g.FillRectangle(Brushes.Red, _tabBounds);
+                //e.DrawBackground();
             }
 
             // Use our own font.
@@ -96,6 +132,12 @@ namespace RequestDispatcher
             _stringFlags.Alignment = StringAlignment.Center;
             _stringFlags.LineAlignment = StringAlignment.Center;
             g.DrawString(_tabPage.Text, _tabFont, _textBrush, _tabBounds, new StringFormat(_stringFlags));
+
+        }
+
+        private void label2_MouseEnter(object sender, EventArgs e)
+        {
+
         }
     }   
 }
