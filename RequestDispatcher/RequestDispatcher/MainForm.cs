@@ -26,10 +26,10 @@ namespace RequestDispatcher
         private void button1_Click(object sender, EventArgs e)
         {
             NormalDistribution distribution = new NormalDistribution(1, 0.1);
-            for (int i = 0; i < 50; i++)
+            for (int i = 0; i < 100; i++)
             {
                 //int countTasks = (int) (distribution.DistributionValue(i) * 10);
-                double countTasks = distribution.Value(i);
+                double countTasks = distribution.Random();
                 chart1.Series[0].Points.AddXY(i, countTasks);
             }
         }
@@ -135,9 +135,22 @@ namespace RequestDispatcher
 
         }
 
-        private void label2_MouseEnter(object sender, EventArgs e)
+        private void mainMenuLabelMouseEnter(object sender, EventArgs e)
         {
+            Label label = (Label)sender;
+            label.BackColor = Color.White;
+        }
 
+        private void mainMenuLabelMouseLeave(object sender, EventArgs e)
+        {
+            Label label = (Label)sender;
+            label.BackColor = Color.Transparent;
+        }
+
+        private void mainMenuLabelClick(object sender, EventArgs e)
+        {
+            Label label = (Label)sender;
+            mainMenuTabControl.TabIndex = 1;
         }
     }   
 }

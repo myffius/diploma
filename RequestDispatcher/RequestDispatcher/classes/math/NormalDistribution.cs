@@ -5,9 +5,6 @@ using RequestDispatcher.RdMath.Interfaces;
 namespace RequestDispatcher.RdMath
 {
     /// Normal distribution, a.k.a. Gaussian distribution.
-    ///
-    /// @author Didier H. Besset
-    /// @translator edgar.sanchez@logicstudio.net
     public sealed class NormalDistribution : ProbabilityDensityFunction
     {
         /// Average of the distribution.
@@ -32,18 +29,15 @@ namespace RequestDispatcher.RdMath
         /// Constant needed to compute the argument to the error function series.
         private const double _errorFunctionConstant = 0.2316419;
 
-        /// Defines a normalized Normal distribution with average 0
-        ///										and standard deviation 1.
+        /// Defines a normalized Normal distribution with average 0 and standard deviation 1.
         public NormalDistribution() : this(0, 1)
         {
         }
 
-        /// Defines a Normal distribution with known average
-        ///											and standard deviation.
+        /// Defines a Normal distribution with known average and standard deviation.
         /// @param average of the distribution
         /// @param standard deviation of the distribution
-        /// @exception ArgumentOutOfRangeException
-        ///						if the standard deviation is non-positive
+        /// @exception ArgumentOutOfRangeException if the standard deviation is non-positive
         public NormalDistribution(double average, double standardDeviation)
         {
             if (standardDeviation <= 0)

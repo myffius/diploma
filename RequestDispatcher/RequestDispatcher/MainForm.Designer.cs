@@ -42,20 +42,24 @@
             this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.tabControl2 = new System.Windows.Forms.TabControl();
-            this.tabPage5 = new System.Windows.Forms.TabPage();
-            this.tabPage6 = new System.Windows.Forms.TabPage();
+            this.mainMenuTabControl = new System.Windows.Forms.TabControl();
+            this.tabDispatcher = new System.Windows.Forms.TabPage();
+            this.tabGenerator = new System.Windows.Forms.TabPage();
+            this.tabHandlers = new System.Windows.Forms.TabPage();
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
+            this.checkBox1 = new System.Windows.Forms.CheckBox();
+            this.label4 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.chart1)).BeginInit();
             this.contextMenuStrip1.SuspendLayout();
-            this.tabControl2.SuspendLayout();
+            this.mainMenuTabControl.SuspendLayout();
+            this.tabGenerator.SuspendLayout();
             this.SuspendLayout();
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(679, 163);
+            this.button1.Location = new System.Drawing.Point(434, 454);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(75, 23);
             this.button1.TabIndex = 0;
@@ -69,13 +73,13 @@
             this.chart1.ChartAreas.Add(chartArea1);
             legend1.Name = "Legend1";
             this.chart1.Legends.Add(legend1);
-            this.chart1.Location = new System.Drawing.Point(434, 0);
+            this.chart1.Location = new System.Drawing.Point(397, 4);
             this.chart1.Name = "chart1";
             series1.ChartArea = "ChartArea1";
             series1.Legend = "Legend1";
             series1.Name = "Series1";
             this.chart1.Series.Add(series1);
-            this.chart1.Size = new System.Drawing.Size(332, 138);
+            this.chart1.Size = new System.Drawing.Size(583, 420);
             this.chart1.TabIndex = 1;
             this.chart1.Text = "chart1";
             // 
@@ -128,42 +132,52 @@
             this.dataGridViewTextBoxColumn3.ReadOnly = true;
             this.dataGridViewTextBoxColumn3.Width = 270;
             // 
-            // tabControl2
+            // mainMenuTabControl
             // 
-            this.tabControl2.Alignment = System.Windows.Forms.TabAlignment.Left;
-            this.tabControl2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+            this.mainMenuTabControl.Alignment = System.Windows.Forms.TabAlignment.Left;
+            this.mainMenuTabControl.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
                         | System.Windows.Forms.AnchorStyles.Left)));
-            this.tabControl2.Controls.Add(this.tabPage5);
-            this.tabControl2.Controls.Add(this.tabPage6);
-            this.tabControl2.DrawMode = System.Windows.Forms.TabDrawMode.OwnerDrawFixed;
-            this.tabControl2.ItemSize = new System.Drawing.Size(39, 122);
-            this.tabControl2.Location = new System.Drawing.Point(4, 0);
-            this.tabControl2.Multiline = true;
-            this.tabControl2.Name = "tabControl2";
-            this.tabControl2.SelectedIndex = 0;
-            this.tabControl2.Size = new System.Drawing.Size(391, 516);
-            this.tabControl2.SizeMode = System.Windows.Forms.TabSizeMode.Fixed;
-            this.tabControl2.TabIndex = 6;
+            this.mainMenuTabControl.Controls.Add(this.tabDispatcher);
+            this.mainMenuTabControl.Controls.Add(this.tabGenerator);
+            this.mainMenuTabControl.Controls.Add(this.tabHandlers);
+            this.mainMenuTabControl.DrawMode = System.Windows.Forms.TabDrawMode.OwnerDrawFixed;
+            this.mainMenuTabControl.ItemSize = new System.Drawing.Size(19, 122);
+            this.mainMenuTabControl.Location = new System.Drawing.Point(4, 0);
+            this.mainMenuTabControl.Multiline = true;
+            this.mainMenuTabControl.Name = "mainMenuTabControl";
+            this.mainMenuTabControl.SelectedIndex = 0;
+            this.mainMenuTabControl.Size = new System.Drawing.Size(391, 516);
+            this.mainMenuTabControl.SizeMode = System.Windows.Forms.TabSizeMode.Fixed;
+            this.mainMenuTabControl.TabIndex = 6;
             // 
-            // tabPage5
+            // tabDispatcher
             // 
-            this.tabPage5.Location = new System.Drawing.Point(126, 4);
-            this.tabPage5.Name = "tabPage5";
-            this.tabPage5.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage5.Size = new System.Drawing.Size(261, 508);
-            this.tabPage5.TabIndex = 0;
-            this.tabPage5.Text = "tabPage5";
-            this.tabPage5.UseVisualStyleBackColor = true;
+            this.tabDispatcher.Location = new System.Drawing.Point(126, 4);
+            this.tabDispatcher.Name = "tabDispatcher";
+            this.tabDispatcher.Padding = new System.Windows.Forms.Padding(3);
+            this.tabDispatcher.Size = new System.Drawing.Size(261, 508);
+            this.tabDispatcher.TabIndex = 0;
+            this.tabDispatcher.Text = "tabPage5";
+            this.tabDispatcher.UseVisualStyleBackColor = true;
             // 
-            // tabPage6
+            // tabGenerator
             // 
-            this.tabPage6.Location = new System.Drawing.Point(126, 4);
-            this.tabPage6.Name = "tabPage6";
-            this.tabPage6.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage6.Size = new System.Drawing.Size(261, 508);
-            this.tabPage6.TabIndex = 1;
-            this.tabPage6.Text = "tabPage6";
-            this.tabPage6.UseVisualStyleBackColor = true;
+            this.tabGenerator.Controls.Add(this.label4);
+            this.tabGenerator.Location = new System.Drawing.Point(126, 4);
+            this.tabGenerator.Name = "tabGenerator";
+            this.tabGenerator.Padding = new System.Windows.Forms.Padding(3);
+            this.tabGenerator.Size = new System.Drawing.Size(261, 508);
+            this.tabGenerator.TabIndex = 1;
+            this.tabGenerator.UseVisualStyleBackColor = true;
+            // 
+            // tabHandlers
+            // 
+            this.tabHandlers.Location = new System.Drawing.Point(126, 4);
+            this.tabHandlers.Name = "tabHandlers";
+            this.tabHandlers.Size = new System.Drawing.Size(261, 508);
+            this.tabHandlers.TabIndex = 2;
+            this.tabHandlers.Text = "tabPage1";
+            this.tabHandlers.UseVisualStyleBackColor = true;
             // 
             // label3
             // 
@@ -174,7 +188,10 @@
             this.label3.Padding = new System.Windows.Forms.Padding(10);
             this.label3.Size = new System.Drawing.Size(127, 39);
             this.label3.TabIndex = 9;
-            this.label3.Text = "Генератор";
+            this.label3.Tag = "tabHandlers";
+            this.label3.Text = "Обработчики";
+            this.label3.MouseEnter += new System.EventHandler(this.mainMenuLabelMouseEnter);
+            this.label3.MouseLeave += new System.EventHandler(this.mainMenuLabelMouseLeave);
             // 
             // label2
             // 
@@ -185,8 +202,10 @@
             this.label2.Padding = new System.Windows.Forms.Padding(10);
             this.label2.Size = new System.Drawing.Size(127, 39);
             this.label2.TabIndex = 8;
+            this.label2.Tag = "tabGenerator";
             this.label2.Text = "Генератор";
-            this.label2.MouseEnter += new System.EventHandler(this.label2_MouseEnter);
+            this.label2.MouseEnter += new System.EventHandler(this.mainMenuLabelMouseEnter);
+            this.label2.MouseLeave += new System.EventHandler(this.mainMenuLabelMouseLeave);
             // 
             // label1
             // 
@@ -197,7 +216,30 @@
             this.label1.Padding = new System.Windows.Forms.Padding(10);
             this.label1.Size = new System.Drawing.Size(127, 39);
             this.label1.TabIndex = 7;
-            this.label1.Text = "Генератор";
+            this.label1.Tag = "tabDispatcher";
+            this.label1.Text = "Диспетчер";
+            this.label1.Click += new System.EventHandler(this.mainMenuLabelClick);
+            this.label1.MouseEnter += new System.EventHandler(this.mainMenuLabelMouseEnter);
+            this.label1.MouseLeave += new System.EventHandler(this.mainMenuLabelMouseLeave);
+            // 
+            // checkBox1
+            // 
+            this.checkBox1.AutoSize = true;
+            this.checkBox1.Location = new System.Drawing.Point(569, 454);
+            this.checkBox1.Name = "checkBox1";
+            this.checkBox1.Size = new System.Drawing.Size(171, 17);
+            this.checkBox1.TabIndex = 0;
+            this.checkBox1.Text = "Нормальное распределение";
+            this.checkBox1.UseVisualStyleBackColor = true;
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(74, 99);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(35, 13);
+            this.label4.TabIndex = 0;
+            this.label4.Text = "label4";
             // 
             // MainForm
             // 
@@ -205,19 +247,23 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Control;
             this.ClientSize = new System.Drawing.Size(980, 512);
+            this.Controls.Add(this.checkBox1);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.label2);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.mainMenuTabControl);
             this.Controls.Add(this.chart1);
-            this.Controls.Add(this.tabControl2);
+            this.Controls.Add(this.button1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "MainForm";
             this.Text = "Request Dispatcher";
             ((System.ComponentModel.ISupportInitialize)(this.chart1)).EndInit();
             this.contextMenuStrip1.ResumeLayout(false);
-            this.tabControl2.ResumeLayout(false);
+            this.mainMenuTabControl.ResumeLayout(false);
+            this.tabGenerator.ResumeLayout(false);
+            this.tabGenerator.PerformLayout();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -232,12 +278,15 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn2;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn3;
-        private System.Windows.Forms.TabControl tabControl2;
-        private System.Windows.Forms.TabPage tabPage6;
-        private System.Windows.Forms.TabPage tabPage5;
+        private System.Windows.Forms.TabControl mainMenuTabControl;
+        private System.Windows.Forms.TabPage tabGenerator;
+        private System.Windows.Forms.TabPage tabDispatcher;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.CheckBox checkBox1;
+        private System.Windows.Forms.TabPage tabHandlers;
+        private System.Windows.Forms.Label label4;
     }
 }
 
