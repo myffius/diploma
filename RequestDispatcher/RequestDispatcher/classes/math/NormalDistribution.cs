@@ -4,13 +4,13 @@ using RequestDispatcher.RdMath.Interfaces;
 
 namespace RequestDispatcher.RdMath
 {
-    /// Normal distribution, a.k.a. Gaussian distribution.
+    /// Нормальное распределение (распределение Гаусса)
     public sealed class NormalDistribution : ProbabilityDensityFunction
     {
-        /// Average of the distribution.
+        /// Математическое ожидание
         private double _mu;
 
-        /// Standard deviation of the distribution.
+        /// Дисперсия
         private double _sigma;
 
         /// Constant needed to compute the norm.
@@ -21,8 +21,7 @@ namespace RequestDispatcher.RdMath
 
         static NormalDistribution()
         {
-            double[] coeffs = { 0.31938153, -0.356563782, 1.781477937,
-										-1.821255978, 1.330274429};
+            double[] coeffs = { 0.31938153, -0.356563782, 1.781477937, -1.821255978, 1.330274429};
             _errorFunctionSeries = new PolynomialFunction(coeffs);
         }
 

@@ -7,3 +7,5 @@ D:\diploma\diploma\RequestDispatcher\RequestDispatcher\bin\Debug\RequestDispatch
 D:\diploma\diploma\RequestDispatcher\RequestDispatcher\bin\Debug\RequestDispatcher.pdb
 D:\diploma\diploma\RequestDispatcher\RequestDispatcher\obj\x86\Debug\RequestDispatcher.exe
 D:\diploma\diploma\RequestDispatcher\RequestDispatcher\obj\x86\Debug\RequestDispatcher.pdb
+D:\diploma\diploma\RequestDispatcher\RequestDispatcher\bin\Debug\SQLite.NET.dll
+D:\diploma\diploma\RequestDispatcher\RequestDispatcher\bin\Debug\RequestDispatcher.exe.config

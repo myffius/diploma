@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -8,30 +9,35 @@ using System.Text;
 using System.Windows.Forms;
 using RequestDispatcher.RdMath;
 using RequestDispatcher.Components;
+using RequestDispatcher.Storage;
+using Finisar.SQLite;
+using System.Threading;
 
 namespace RequestDispatcher
 {
     public partial class MainForm : Form
     {
+        public SQLiteStorage storage;
+        RequestDispatcher.TaskGenerator generator;
+        RequestDispatcher.Dispatcher dispatcher = new RequestDispatcher.Dispatcher();
+        
         public MainForm()
         {
             InitializeComponent();
+            string dbPath = Application.StartupPath + "\\data.db";
+            storage = new SQLiteStorage(dbPath);
             for (int i = 1; i < 6; i++)
             {
                 String identifier = "Обработчик " + Convert.ToString(i);
             }
-            // createDataGrid();
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void buttonStartClick(object sender, EventArgs e)
         {
             NormalDistribution distribution = new NormalDistribution(1, 0.1);
-            for (int i = 0; i < 100; i++)
-            {
-                //int countTasks = (int) (distribution.DistributionValue(i) * 10);
-                double countTasks = distribution.Random();
-                chart1.Series[0].Points.AddXY(i, countTasks);
-            }
+            generator = new RequestDispatcher.TaskGenerator(distribution);
+            Thread thread = new Thread(run);
+            thread.Start();
         }
 
         private void createDataGrid()
@@ -147,10 +153,35 @@ namespace RequestDispatcher
             label.BackColor = Color.Transparent;
         }
 
-        private void mainMenuLabelClick(object sender, EventArgs e)
+        private void prepareDb()
         {
-            Label label = (Label)sender;
-            mainMenuTabControl.TabIndex = 1;
+            string dbPath = Application.StartupPath + "\\data.db";
+            bool createTabels = false;
+            if (!System.IO.File.Exists(dbPath))
+            {
+                System.IO.File.Create(dbPath);
+                createTabels = true;
+            }
+            SQLiteConnection connection = new SQLiteConnection("DataSource=" + dbPath + ";Version=3;New=False;Compress=True;");
+            if (createTabels)
+            {
+                string sql = "CREATE TABLE handlers (id INT PRIMARY KEY AUTOINCREMENT, title VARCHAR(100))";
+            }
+        }
+
+        public void run()
+        {
+            int iterations = (int) countIteration.Value;
+            for (int i = 0; i < iterations; i++)
+            {
+                ArrayList tasks = generator.generate();
+                foreach (Task task in tasks)
+                {
+                    
+                }
+                double countTasks = distribution.Random();
+                chart1.Series[0].Points.AddXY(i, countTasks);
+            }
         }
     }   
 }
