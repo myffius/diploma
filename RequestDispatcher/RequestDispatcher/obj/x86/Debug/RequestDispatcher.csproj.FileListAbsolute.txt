@@ -9,3 +9,4 @@ D:\diploma\diploma\RequestDispatcher\RequestDispatcher\obj\x86\Debug\RequestDisp
 D:\diploma\diploma\RequestDispatcher\RequestDispatcher\obj\x86\Debug\RequestDispatcher.pdb
 D:\diploma\diploma\RequestDispatcher\RequestDispatcher\bin\Debug\SQLite.NET.dll
 D:\diploma\diploma\RequestDispatcher\RequestDispatcher\bin\Debug\RequestDispatcher.exe.config
+D:\diploma\diploma\RequestDispatcher\RequestDispatcher\obj\x86\Debug\RequestDispatcher.HandlerForm.resources

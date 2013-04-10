@@ -12,32 +12,46 @@ using RequestDispatcher.Components;
 using RequestDispatcher.Storage;
 using Finisar.SQLite;
 using System.Threading;
+using System.Windows.Forms.DataVisualization.Charting;
 
 namespace RequestDispatcher
 {
     public partial class MainForm : Form
     {
         public SQLiteStorage storage;
-        RequestDispatcher.TaskGenerator generator;
-        RequestDispatcher.Dispatcher dispatcher = new RequestDispatcher.Dispatcher();
+        TaskGenerator generator;
+        Dispatcher dispatcher = new QueueDispatcher();
+        Thread backThread;
+        List<Chart> charts = new List<Chart>();
+        static int inc = 0;
         
         public MainForm()
         {
             InitializeComponent();
             string dbPath = Application.StartupPath + "\\data.db";
             storage = new SQLiteStorage(dbPath);
-            for (int i = 1; i < 6; i++)
-            {
-                String identifier = "Обработчик " + Convert.ToString(i);
-            }
         }
 
         private void buttonStartClick(object sender, EventArgs e)
         {
-            NormalDistribution distribution = new NormalDistribution(1, 0.1);
-            generator = new RequestDispatcher.TaskGenerator(distribution);
-            Thread thread = new Thread(run);
-            thread.Start();
+            btnStart.Enabled = false;
+            NormalDistribution distribution = new NormalDistribution(1, 1);
+            generator = new TaskGenerator(distribution);
+            
+            backThread = new Thread(run);
+            backThread.IsBackground = true;
+            
+            for (int i = 0; i < 2; i++)
+            {
+                TaskHandler h = new TaskHandler("#" + (int)i, 1, 1);
+                Chart c = createChart();
+                charts.Add(c);
+                dispatcher.addHandler(h, c);
+            }
+            
+            backThread.Start();
+            btnCancel.Enabled = true;
+            timer.Enabled = true;
         }
 
         private void createDataGrid()
@@ -48,7 +62,7 @@ namespace RequestDispatcher
             rdDataGridView.ColumnHeadersHeight = 28;
             rdDataGridView.RowHeadersVisible = false;
             rdDataGridView.Dock = DockStyle.Top;
-            rdDataGridView.RowTemplate.ContextMenuStrip = contextMenuStrip1;
+            rdDataGridView.RowTemplate.ContextMenuStrip = handlerContextMenuGrid;
             rdDataGridView.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             rdDataGridView.BackgroundColor = Color.GhostWhite;
 
@@ -141,47 +155,130 @@ namespace RequestDispatcher
 
         }
 
-        private void mainMenuLabelMouseEnter(object sender, EventArgs e)
-        {
-            Label label = (Label)sender;
-            label.BackColor = Color.White;
-        }
-
-        private void mainMenuLabelMouseLeave(object sender, EventArgs e)
-        {
-            Label label = (Label)sender;
-            label.BackColor = Color.Transparent;
-        }
-
-        private void prepareDb()
-        {
-            string dbPath = Application.StartupPath + "\\data.db";
-            bool createTabels = false;
-            if (!System.IO.File.Exists(dbPath))
-            {
-                System.IO.File.Create(dbPath);
-                createTabels = true;
-            }
-            SQLiteConnection connection = new SQLiteConnection("DataSource=" + dbPath + ";Version=3;New=False;Compress=True;");
-            if (createTabels)
-            {
-                string sql = "CREATE TABLE handlers (id INT PRIMARY KEY AUTOINCREMENT, title VARCHAR(100))";
-            }
-        }
-
         public void run()
         {
+            visualization();
             int iterations = (int) countIteration.Value;
-            for (int i = 0; i < iterations; i++)
+            //for (int i = 0; i < iterations; i++)
+            while (true)
             {
-                ArrayList tasks = generator.generate();
+                List<Task> tasks = generator.generate();
                 foreach (Task task in tasks)
                 {
-                    
+                    dispatcher.resolve(task);
                 }
-                double countTasks = distribution.Random();
-                chart1.Series[0].Points.AddXY(i, countTasks);
+                Thread.Sleep(100);
             }
+        }
+
+        private void visualization()
+        {
+            int chartWidth = 530;
+            //int chartTop;
+            
+            int perLine = charts.Count / 2;
+            
+            //chartWidth = Width / perLine - 20;
+
+
+            foreach (Chart chart in charts)
+            { 
+                int index = charts.IndexOf(chart);
+                this.BeginInvoke(
+                    new Action(delegate() 
+                        {
+                            chart.Height = 300;// Height - panelTop.Height - 20;
+                            chart.Width = chartWidth;// Width / charts.Count - (5 * charts.Count);
+                            if (index < 2)
+                            {
+                                chart.Location = new Point(chartWidth * index + (5 * index), this.panelTop.Height + 5);
+                            }
+                            this.Controls.Add(chart);
+                        }
+                ));
+                //this.Controls.Add(chart);
+            }
+        }
+
+        private void itemAddHandlerClick(object sender, EventArgs e)
+        {
+            HandlerForm handlerForm = new HandlerForm();
+            handlerForm.Text = "Новый обработчик";
+            handlerForm.Tag = "new";
+            
+            handlerForm.FormClosed += new FormClosedEventHandler(HandlerDialogClose);
+            handlerForm.ShowDialog();
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            chart1.Series["Series1"].ChartType = SeriesChartType.Spline;
+            chart1.Series["Series1"].BorderWidth = 3;
+            for (int i = 0; i < 50; i++)
+            {
+                chart1.Series[0].Points.Add(i * 1.5 / (i * 0.5));
+            }
+        }
+
+        public void HandlerDialogClose(object sender, FormClosedEventArgs e)
+        {
+            string i = "";
+            int c = 0;
+            int m = 0;
+            HandlerForm handlerForm = (HandlerForm)sender;
+            foreach (Control control in handlerForm.Controls)
+            {
+                switch (control.Name)
+                {
+                    case "boxIdentity":
+                        TextBox ctrl = (TextBox)control;
+                        i = ctrl.Text;
+                        break;
+                    case "boxCpu":
+                    case "boxMemory":
+                        break;
+
+                }
+            }
+            handlerGrid.Rows.Add(i, c, m);
+        }
+
+        private void btnCancelClick(object sender, EventArgs e)
+        {
+            backThread.Abort();
+            btnCancel.Enabled = false;
+            btnStart.Enabled = true;
+        }
+
+        private void timerTick(object sender, EventArgs e)
+        {
+            for (int i = 0; i < charts.Count; i++)
+            {
+                int y = dispatcher.getHandlerStatistic(i);
+                charts[i].Series["CPU"].Points.Add(y);
+            }
+            MainForm.inc++;
+        }
+
+        private Chart createChart()
+        {
+            Chart chart = new Chart();
+            ChartArea ca = new ChartArea();
+            Legend legend = new Legend();
+            Series series = new Series();
+
+            ca.Name = "ChartArea1";
+            chart.ChartAreas.Add(ca);
+            legend.Name = "Legend1";
+            chart.Legends.Add(legend);
+            //this.chart1.Name = "chart1";
+            series.ChartArea = "ChartArea1";
+            series.Legend = "Legend1";
+            series.Name = "CPU";
+            chart.Series.Add(series);
+            chart1.Series["Series1"].ChartType = SeriesChartType.Spline;
+            chart1.Series["Series1"].BorderWidth = 3;
+            return chart;
         }
     }   
 }

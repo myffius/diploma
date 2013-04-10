@@ -16,7 +16,8 @@ namespace RequestDispatcher
         public List<Task> generate()
         {
             List<Task> tasks = new List<Task>();
-            for (int i = 1; i <= _generator.Random(); i++)
+            double max = _generator.Random() * 10;
+            for (int i = 1; i <= max; i++)
             {
                 tasks.Add(new RequestDispatcher.Task());
             }
